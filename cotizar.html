@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizar Mudanza - Mudanzas Hermes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body style="background: url('Imagenes/cotizar.jpg') center/cover no-repeat; height: 200vh; color: rgb(0, 0, 0);"></body>
+
+    <!-- Barra de Navegación -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="Imagenes/Logo_Mudanzas-sin fondo.png" alt="Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="index.html">Inicio</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="servicios.html">Servicios</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="nosotros.html">Nosotros</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="clientes-felices.html">Clientes Felices</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="contacto.html">Contacto</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="boton-cotizar" href="cotizar.html">Cotizar Mudanza</a></li>
+                    </li>
+                </ul>
+            </div>
+        </nav>  
+    <header>
+
+    <!-- Contenido de Cotizar Mudanza -->
+    <div class="container mt-5">
+        <h1 class="text-center" style="color: yellow; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Cotizar Mudanza</h1>
+        <form id="cotizacionForm" onsubmit="calcularCosto(event)">
+            <div class="form-group">
+                <label>Nombre y apellido*</label>
+                <input type="text" class="form-control" id="nombre" required>
+            </div>
+            <div class="form-group">
+                <label>Teléfono*</label>
+                <input type="tel" class="form-control" id="telefono" required>
+            </div>
+            <div class="form-group">
+                <label>Email*</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label>Origen*</label>
+                <input type="text" class="form-control" id="origen" placeholder="Indique la dirección completa de origen" required>
+            </div>
+            <div class="form-group">
+                <label>Destino*</label>
+                <input type="text" class="form-control" id="destino" placeholder="Indique la dirección completa de destino" required>
+            </div>
+            <div class="form-group">
+                <label>Cantidad de muebles/electrodomésticos</label>
+                <input type="number" class="form-control" id="cantidadMuebles" min="0" placeholder="Ingrese la cantidad de muebles o electrodomésticos">
+            </div>
+            <div class="form-group">
+                <label>Cantidad de cajas</label>
+                <input type="number" class="form-control" id="cantidadCajas" min="0" placeholder="Ingrese la cantidad de cajas">
+            </div>
+            <div class="form-group">
+                <label>Fecha*</label>
+                <input type="date" class="form-control" id="fecha" required>
+            </div>
+            <button type="submit" class="btn btn-warning text-dark">Calcular Costo</button>
+        </form>
+        
+        <div id="resultado" class="mt-4"></div>
+
+        <div class="text-center mt-4">
+            <a href="index.html" class="btn btn-warning text-dark">Volver a Inicio</a>
+        </div>
+    </div>
+
+    <!-- Script para cálculo de costo -->
+    <script>
+        function calcularCosto(event) {
+            event.preventDefault();
+
+            // Obtener valores de los campos del formulario
+            const nombre = document.getElementById("nombre").value.trim();
+            const telefono = document.getElementById("telefono").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const origen = document.getElementById("origen").value.trim();
+            const destino = document.getElementById("destino").value.trim();
+            const fecha = document.getElementById("fecha").value;
+            const cantidadCajas = parseInt(document.getElementById("cantidadCajas").value) || 0;
+            const cantidadMuebles = parseInt(document.getElementById("cantidadMuebles").value) || 0;
+
+            // Validación de campos obligatorios
+            if (!nombre || !telefono || !email || !origen || !destino || !fecha) {
+                alert("Por favor, complete todos los campos obligatorios.");
+                return;
+            }
+
+            // Parámetros de cálculo
+            const distanciaBase = 20; // distancia estimada en kilómetros
+            const tarifaPorKm = 2000; // tarifa en pesos por kilómetro
+            const costoBase = 20000; // costo base por servicio
+            const costoPorCaja = 500; // costo adicional por cada caja
+            const costoPorMueble = 1000; // costo adicional por cada mueble/electrodoméstico
+
+            // Cálculo del costo total
+            const costoPorDistancia = distanciaBase * tarifaPorKm;
+            const costoCajas = cantidadCajas * costoPorCaja;
+            const costoMuebles = cantidadMuebles * costoPorMueble;
+            const costoEstimado = costoBase + costoPorDistancia + costoCajas + costoMuebles;
+
+            // Mostrar el resultado
+            document.getElementById("resultado").innerHTML = `
+                <div class="alert alert-success mt-3">
+                    <h5>Cotización Estimada</h5>
+                    <p>Para la mudanza de ${origen} a ${destino}, el costo estimado es de: <strong>$${costoEstimado.toFixed(2)}</strong></p>
+                    <p>Detalles:</p>
+                    <ul>
+                        <li>Distancia: ${distanciaBase} km x $${tarifaPorKm}/km = $${costoPorDistancia}</li>
+                        <li>Cajas: ${cantidadCajas} x $${costoPorCaja} = $${costoCajas}</li>
+                        <li>Muebles/Electrodomésticos: ${cantidadMuebles} x $${costoPorMueble} = $${costoMuebles}</li>
+                    </ul>
+                </div>
+            `;
+        }
+    </script>
+
+    <footer class="text-muted text-center">
+        <div class="container">
+            <p>&copy; 2024 Mudanzas Hermes</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Mudanzas Hermes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body style="background: url('Imagenes/servicios.jpg') 70% 90px / cover no-repeat; height: 300vh; color: rgb(0, 0, 0);">
+
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="Imagenes/Logo_Mudanzas-sin fondo.png" alt="Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="index.html">Inicio</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="servicios.html">Servicios</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="nosotros.html">Nosotros</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="clientes-felices.html">Clientes Felices</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="menu-boton" href="contacto.html">Contacto</a></li>
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item"><a class="boton-cotizar" href="cotizar.html">Cotizar Mudanza</a></li>
+                    </li>
+                </ul>
+            </div>
+        </nav>  
+    </header>
+
+    
+          <!-- Contenido de Servicios -->
+                <div class="container mt-5">
+                    <h1 class="text-center animate__animated animate__fadeInUp animate__delay-2s" style="color: yellow; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Nuestros Servicios</h1>
+                    <ul class="list-group mt-4 animate__animated animate__fadeInUp">
+                        <li class="list-group-item">Mudanzas puerta a puerta</li>
+                        <li class="list-group-item">Mudanzas rápidas</li>
+                        <li class="list-group-item">Mudanzas seguras y sin estrés</li>
+                        <li class="list-group-item">Servicio de embalaje de muebles</li>
+                        <li class="list-group-item">Fletes en general</li>
+                        <li class="list-group-item">Auxilio de auto y moto</li>
+                    </ul>
+                    <div class="text-center mt-4">
+                        <a href="index.html" class="btn btn-warning text-dark">Volver a Inicio</a>
+                    </div>
+                </div>
+
+                <section id="servicios" class="servicios-section text-center mt-4">
+                    <div class="container">
+                        <h2 class="display-4 text-warning" style="color: yellow; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Echa un vistazo</h2>
+                        <p class="lead">Conoce los servicios que ofrecemos y descubre por qué somos la mejor opción para tus mudanzas</p>
+                
+                        <!-- Collage de imágenes -->
+                        <div class="collage">
+                            <div class="collage-item">
+                                <img src="Imagenes/456990782_1685780138628248_2448888984166743280_n.jpg" alt="Carro y estructura preparada para mudanzas">
+                            </div>
+                            <div class="collage-item">
+                                <img src="Imagenes/nailon grande.jpg" alt="Lona para cubrir tus pertenencias en caso de lluvia">
+                            </div>
+                            <div class="collage-item">
+                                <img src="Imagenes/auxilo moto.jpg" alt="Auxilio de moto">
+                            </div>
+                            <div class="collage-item">
+                                <img src="Imagenes/altura8.jpg" alt="Subida de muebles con cuerdas">
+                            </div>
+                            <div class="collage-item">
+                                <img src="Imagenes/rnsf5wts.png" alt="Cuidamos tus cosas con suma delicadeza">
+                            </div>
+                            <div class="collage-item">
+                                <img src="Imagenes/embalaje5.jpg" alt="Servicio de embalaje">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="modal" class="modal">
+                        <span class="cerrar">&times;</span>
+                        <img class="modal-contenido" id="img-modal">
+                        <div id="caption"></div>
+                    </div>
+
+                </section>
+
+                <footer class="text-muted text-center">
+                    <div class="container">
+                        <p>&copy; 2024 Mudanzas Hermes</p>
+                    </div>
+                </footer>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Selecciona el modal y los elementos de imagen
+                        const modal = document.getElementById("modal");
+                        const modalImg = document.getElementById("img-modal");
+                        const captionText = document.getElementById("caption");
+                        const cerrar = document.getElementsByClassName("cerrar")[0];
+                    
+                        // Agrega un evento a cada imagen para abrir el modal
+                        document.querySelectorAll(".collage-item img").forEach(img => {
+                            img.onclick = function() {
+                                modal.style.display = "block";
+                                modalImg.src = this.src;
+                                captionText.innerHTML = this.alt;
+                            }
+                        });
+                    
+                        // Cerrar el modal cuando se hace clic en la "X"
+                        cerrar.onclick = function() {
+                            modal.style.display = "none";
+                        }
+                    
+                        // Cerrar el modal al hacer clic fuera de la imagen
+                        modal.onclick = function(event) {
+                            if (event.target === modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+                    });
+                </script>            
+        
+</body>
+</html>
+
+
